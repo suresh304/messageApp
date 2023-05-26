@@ -19,7 +19,7 @@ signOut(auth).then(() => {
     <>
     {user.displayName}
     <Profile src={user.photoURL}/>
-    <button style={{color:"blue"}} onClick={signout}>Logout</button>
+    <button style={{color:"blue",background:"green"}} onClick={signout}>Logout</button>
     </>
 
   )

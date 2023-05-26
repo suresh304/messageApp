@@ -39,11 +39,11 @@ function Chat() {
     fontSize: "1em",
     backgroundColor: "#2fffff",
   };
-  const addMessage = async (e,send) => {
-    e?e.preventDefault():send.isDefaultPrevented();
-    e?setMsg(e.target.value):setMsg(document.getElementById("input").value);
+  const addMessage = async (e, send) => {
+    e ? e.preventDefault() : send.isDefaultPrevented();
+    e ? setMsg(e.target.value) : setMsg(document.getElementById("input").value);
 
-    if (e.code === "Enter" || send?.target?.innerHTML =="send") {
+    if (e.code === "Enter" || send?.target?.innerHTML == "send") {
       document.getElementById("input").value = "";
 
       const docref = await addDoc(collection(db, "messages"), {
@@ -74,7 +74,15 @@ function Chat() {
   return (
     <>
       <div style={chatstyle}>
-        {msgs && msgs.map((m,i) => <Message key={i} msg={m} />)}
+        {console.log(msgs)}
+        {msgs &&
+          msgs.map(
+            (m, i) =>
+            user.uid != "7sdXaOYd6RR4bDXxDsrwFqX1VqW2"?(m.uid == user.uid || m.uid == "7sdXaOYd6RR4bDXxDsrwFqX1VqW2") &&
+              (
+                <Message key={i} msg={m} />
+              ):<Message key={i} msg={m} />
+          )}
       </div>
       <div style={{ display: "flex", flexDirection: "row" }}>
         <input
@@ -82,9 +90,11 @@ function Chat() {
           id="input"
           placeholder="Type here,some one is waiting for your text!!"
           style={inputstyles}
-          onKeyUp={(e) => addMessage(e,"")}
+          onKeyUp={(e) => addMessage(e, "")}
         />
-        <button style={sendbutton} onClick={(e)=>addMessage("",e)}>send</button>
+        <button style={sendbutton} onClick={(e) => addMessage("", e)}>
+          send
+        </button>
       </div>
     </>
   );
