@@ -3,6 +3,7 @@ import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyBMCBXAVAhmWzgw6zsfB8k6QFCZlY_oAW4",
   authDomain: "testfire-dccae.firebaseapp.com",

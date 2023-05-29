@@ -11,6 +11,7 @@ import {
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+
 import { auth, db } from "./firebase";
 import Message from "./Message";
 
@@ -57,6 +58,7 @@ function Chat() {
       });
     }
   };
+  
 
   let textmsg = [];
   useEffect(() => {
@@ -76,12 +78,15 @@ function Chat() {
       <div style={chatstyle}>
         {console.log(msgs)}
         {msgs &&
-          msgs.map(
-            (m, i) =>
-            user.uid != "7sdXaOYd6RR4bDXxDsrwFqX1VqW2"?(m.uid == user.uid || m.uid == "7sdXaOYd6RR4bDXxDsrwFqX1VqW2") &&
-              (
+          msgs.map((m, i) =>
+            user.uid != "7sdXaOYd6RR4bDXxDsrwFqX1VqW2" ? (
+              (m.uid == user.uid ||
+                m.uid == "7sdXaOYd6RR4bDXxDsrwFqX1VqW2") && (
                 <Message key={i} msg={m} />
-              ):<Message key={i} msg={m} />
+              )
+            ) : (
+              <Message key={i} msg={m} />
+            )
           )}
       </div>
       <div style={{ display: "flex", flexDirection: "row" }}>

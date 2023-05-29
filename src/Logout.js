@@ -6,6 +6,7 @@ import Profile from './Profile';
 
 function Logout() {
     const [user]=useAuthState(auth)
+    console.log(user)
     const signout=()=>{
 
 signOut(auth).then(() => {
@@ -14,7 +15,14 @@ signOut(auth).then(() => {
   // An error happened.
 });
         
-    }
+}
+let interval =setInterval(()=>user&&signOut(auth).then(() => {
+  console.log("hello user sign out")
+}).catch((error) => {
+  // An error happened.
+}),1*60*1000)
+clearInterval(interval)
+
   return (
     <>
     {user.displayName}
